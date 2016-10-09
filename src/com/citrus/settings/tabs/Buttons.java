@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Citrus-CAF Project
+ * Copyright (C) 2016 Cardinal-AOSP Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@ import android.content.ContentResolver;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.UserHandle;
-import android.preference.ListPreference;
-import android.preference.SwitchPreference;
-import android.preference.Preference;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceScreen;
-import android.preference.Preference.OnPreferenceChangeListener;
+import android.support.v7.preference.PreferenceCategory;
+import android.support.v7.preference.ListPreference;
+import android.support.v7.preference.Preference;
+import android.support.v7.preference.PreferenceScreen;
+import android.support.v7.preference.Preference.OnPreferenceChangeListener;
+import android.support.v14.preference.SwitchPreference;
 import android.provider.Settings;
 
 import com.android.settings.R;
@@ -34,8 +34,7 @@ import com.android.settings.SettingsPreferenceFragment;
 import com.android.internal.logging.MetricsProto.MetricsEvent;
 import com.android.settings.Utils;
 
-public class Buttons extends SettingsPreferenceFragment implements
-        Preference.OnPreferenceChangeListener {
+public class Buttons extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String VOLUME_ROCKER_WAKE = "volume_rocker_wake";
     public static final String VOLUME_ROCKER_MUSIC_CONTROLS = "volume_rocker_music_controls";
@@ -51,7 +50,7 @@ public class Buttons extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getActivity().getContentResolver();
         PreferenceScreen prefScreen = getPreferenceScreen();
-        Resources res = getResources()
+        Resources res = getResources();
 
         //volume rocker wake
         mVolumeRockerWake = (SwitchPreference) findPreference(VOLUME_ROCKER_WAKE);
@@ -81,7 +80,6 @@ public class Buttons extends SettingsPreferenceFragment implements
                     value ? 1 : 0);
             return true;
          }
-        }
         return false;
     }
 
@@ -98,10 +96,5 @@ public class Buttons extends SettingsPreferenceFragment implements
     @Override
     public void onPause() {
         super.onPause();
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-        return true;
     }
 }

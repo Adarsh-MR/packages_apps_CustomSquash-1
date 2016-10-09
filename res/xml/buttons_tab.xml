@@ -21,8 +21,7 @@
         <PreferenceScreen
             android:key="key_settings"
             android:title="@string/key_settings_title"
-            android:fragment="com.citrus.settings.fragments.HardwareKeySettings"
-            android:layout="@layout/preference_buttons" />
+            android:fragment="com.citrus.settings.fragments.HardwareKeySettings" />
 
         <SwitchPreference
             android:key="volume_rocker_wake"

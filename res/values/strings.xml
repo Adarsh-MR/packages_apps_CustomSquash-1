@@ -17,7 +17,7 @@
 
     <!-- Custom Squash menus -->
     <string name="custom_squash_title">Custom Squash!</string>
-    <string name="keywords_citrus">Citrus-CAF
+    <string name="keywords_citrus">Citrus-CAF</string>
     
     <!-- Tabs -->
     <string name="buttons_title">Buttons</string>
@@ -45,5 +45,4 @@
     <string name="hardware_keys_action_in_app_search">In-app search</string>
     <string name="hardware_keys_action_launch_camera">Launch camera</string>
     <string name="hardware_keys_action_sleep">Turn screen off</string>
-    
     </resources>
