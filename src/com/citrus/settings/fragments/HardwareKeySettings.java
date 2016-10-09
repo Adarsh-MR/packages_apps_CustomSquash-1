@@ -93,6 +93,8 @@ public class HardwareKeySettings extends SettingsPreferenceFragment implements
 
     private PreferenceCategory mNavigationPreferencesCat;
 
+    private PreferenceScreen hardwarekeys_settings;
+
     private Handler mHandler;
 
     @Override
@@ -120,6 +122,16 @@ public class HardwareKeySettings extends SettingsPreferenceFragment implements
                 (PreferenceCategory) prefScreen.findPreference(CATEGORY_MENU);
 
         mHandler = new Handler();
+
+        // look for hwkeys overlay
+        hardwarekeys_settings = (PreferenceScreen) prefScreen.findPreference("key_settings");
+
+        boolean showHwKeys = getResources().getBoolean(
+                com.android.internal.R.bool.config_showHwKeys);
+
+        if(!showHwKeys) {
+        	prefScreen.removePreference(hardwarekeys_settings);
+        }
 
         if (hasHomeKey) {
             int defaultLongPressAction = res.getInteger(
