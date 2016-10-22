@@ -371,4 +371,8 @@
     <string name="statusbar_battery_charging_color_enable_summary"></string>
     <string name="battery_enable_title">Show battery</string>
 
+    <!-- Lockscreen tap-to sleep -->
+    <string name="double_tap_sleep_anywhere_title">Double-tap to sleep anywhere</string>
+    <string name="double_tap_sleep_anywhere_summary">Double tap anywhere on the lockscreen to put the device to sleep</string>
+
 </resources>

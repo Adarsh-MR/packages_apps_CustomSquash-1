@@ -40,6 +40,12 @@
         android:summary="@string/keyguard_torch_summary"
         android:defaultValue="false" />
 
+        <com.citrus.settings.preference.SystemSettingSwitchPreference
+             android:key="double_tap_sleep_anywhere"
+             android:title="@string/double_tap_sleep_anywhere_title"
+             android:summary="@string/double_tap_sleep_anywhere_summary"
+             android:defaultValue="false" />
+
     <PreferenceScreen
             android:title="@string/display_color_title"
             android:summary="@string/display_color_summary">
