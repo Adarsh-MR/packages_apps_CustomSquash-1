@@ -46,17 +46,23 @@
             android:dependency="status_bar_citrus_logo" />
 
      </PreferenceCategory>
- 
+
+     <PreferenceScreen
+        android:fragment="com.citrus.settings.fragments.CarrierLabelSettings"
+        android:key="citrus_carrier_label_settings"
+        android:title="@string/carrier_options"
+        android:summary="@string/carrier_label_settings_summary" />
+
       <PreferenceCategory
          android:title="@string/battery">
- 
+
          <Preference
              android:key="statusbar_battery"
              android:title="@string/battery_title"
              android:fragment="com.citrus.settings.fragments.StatusbarBatterySettings" />
- 
+
        </PreferenceCategory>
- 
+
     <PreferenceScreen
             android:title="@string/power_notification_title"
             android:summary="@string/power_notification_summary">
