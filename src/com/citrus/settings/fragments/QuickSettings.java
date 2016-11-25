@@ -45,8 +45,12 @@ import com.android.settings.Utils;
 public class QuickSettings extends SettingsPreferenceFragment implements OnPreferenceChangeListener {
 
     private static final String PREF_COLUMNS = "qs_layout_columns";
+    private static final String PREF_LOCK_QS_DISABLED = "lockscreen_qs_disabled";
 
     private CustomSeekBarPreference mQsColumns;
+    private SwitchPreference mLockQsDisabled;
+
+    private static final int MY_USER_ID = UserHandle.myUserId();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
 
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefSet = getPreferenceScreen();
+        final LockPatternUtils lockPatternUtils = new LockPatternUtils(getActivity());
 
         int defaultValue;
 
@@ -64,6 +69,15 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         mQsColumns.setValue(columnsQs / 1);
         mQsColumns.setOnPreferenceChangeListener(this);
     }
+
+        mLockQsDisabled = (SwitchPreference) findPreference(PREF_LOCK_QS_DISABLED);
+        if (lockPatternUtils.isSecure(MY_USER_ID)) {
+            mLockQsDisabled.setChecked((Settings.Secure.getInt(resolver,
+                Settings.Secure.LOCK_QS_DISABLED, 0) == 1));
+            mLockQsDisabled.setOnPreferenceChangeListener(this);
+        } else {
+            prefSet.removePreference(mLockQsDisabled);
+        }
 
     @Override
     protected int getMetricsCategory() {
@@ -84,6 +98,11 @@ public class QuickSettings extends SettingsPreferenceFragment implements OnPrefe
         if (preference == mQsColumns) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.QS_LAYOUT_COLUMNS, qsColumns * 1);
+            return true;
+        } else if  (preference == mLockQsDisabled) {
+            boolean checked = ((SwitchPreference)preference).isChecked();
+            Settings.Secure.putInt(getActivity().getContentResolver(),
+                    Settings.Secure.LOCK_QS_DISABLED, checked ? 1:0);
             return true;
         }
         return false;
